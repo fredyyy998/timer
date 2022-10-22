@@ -1,0 +1,23 @@
+.play-button {
+  height: 7em;
+  width: 7em;
+  border-radius: 50%;
+  margin: auto;
+  display: flex;
+
+  border: solid 5px rgba(255, 255, 255, 0.6);
+}
+
+.inner-play-button {
+  height: 6em;
+  width: 6em;
+  border-radius: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.6);
+}
