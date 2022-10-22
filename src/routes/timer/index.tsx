@@ -1,5 +1,6 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import styles from './timer.css?inline';
+import PlayButton from "~/components/play-button/playButton";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -7,13 +8,10 @@ export default component$(() => {
     <>
       <h1>Choose Timer</h1>
       <div class={'card'}>
-        <div class={'play-button'}>
-          <div class={'inner-play-button'}>
-            <span>
-              <i className="fa-solid fa-play fa-2xl"></i>
-            </span>
-          </div>
-        </div>
+        <a href={'/timer-runner'}>
+          <PlayButton play={true} />
+        </a>
+
         <div class={'timer-description'}>
           <h2>Timername</h2>
           <div class={'timer-description-sets'}>
