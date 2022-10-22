@@ -17,11 +17,11 @@ export const RouterHead = component$(() => {
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
       <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap"
-        rel="stylesheet"
-      />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={""}/>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
+            rel="stylesheet"/>
+
+      <script src="https://kit.fontawesome.com/0c4039f316.js" crossOrigin="anonymous"></script>
 
       {head.meta.map((m) => (
         <meta {...m} />

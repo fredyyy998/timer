@@ -1,0 +1,45 @@
+.card {
+    background-color: #FBAB7E;
+    width: 60vw;
+    height: 40vh;
+    margin: auto;
+    padding: 2em;
+
+    border-radius: 60px;
+}
+
+.play-button {
+    height: 7em;
+    width: 7em;
+    border-radius: 50%;
+    margin: auto;
+    display: flex;
+
+    border: solid 5px rgba(255, 255, 255, 0.6);
+}
+
+.inner-play-button {
+    height: 6em;
+    width: 6em;
+    border-radius: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.timer-description {
+    padding: 2em 0;
+    color: #FFFFFF;
+}
+
+.timer-description-sets{
+    margin-top: 2em;
+    color: rgba(255,255,255,.8);
+    display: flex;
+    justify-content: space-between;
+}
