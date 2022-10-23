@@ -1,14 +1,16 @@
-<div class="main-container">
+<div class="main-container" *ngIf="program">
   <div class="end-timer">
     <span [routerLink]="['/']">End Session</span>
   </div>
   <div class="desciption-next">
-    <span>Next: Break 15s</span>
+    <span *ngIf="activeIndex < this.program.timers.length">Next: {{ this.program.timers[activeIndex+1].type }} {{ this.program.timers[activeIndex+1].time }}s</span>
+    <span *ngIf="activeIndex === this.program.timers.length">Last Set</span>
+    <span *ngIf="activeIndex > this.program.timers.length">Done</span>
   </div>
   <div class="timer">
     <span>{{remainingTime}}s</span>
   </div>
   <div>
-  <app-play-button></app-play-button>
+  <app-play-button (click)="onTimerStart()" [isPlaying]="!running"></app-play-button>
 </div>
 </div>

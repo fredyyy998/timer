@@ -9,7 +9,7 @@ const routes: Routes = [
     component: TimerSelectionComponent,
   },
   {
-    path: 'timer',
+    path: 'timer/:id',
     component: TimerComponent
   }
 ];

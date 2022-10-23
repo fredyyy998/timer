@@ -9,11 +9,15 @@ import { ProgramService } from '../../chore/services/program.service';
 })
 export class TimerSelectionComponent implements OnInit {
 
-  program!: Program;
+  selectedProgram!: Program;
+  programs: Program[] = [];
   constructor(private readonly programService: ProgramService) {
   }
 
   ngOnInit(): void {
-    this.program = this.programService.getProgram();
+    this.programService.listData().subscribe(res => {
+      this.programs = res;
+      this.selectedProgram = this.programs[0];
+    })
   }
 }
