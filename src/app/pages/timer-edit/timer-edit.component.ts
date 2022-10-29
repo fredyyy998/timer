@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { mergeMap, tap } from 'rxjs';
+import { concatWith, mergeMap, Observable, of, tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ProgramService } from '../../chore/services/program.service';
 import { Program } from '../../models/Program';
@@ -13,33 +13,36 @@ import { TimerTypes } from '../../models/Timer';
 })
 export class TimerEditComponent implements OnInit {
   faPencil = faPen;
-  faTime = faClock;
 
   program!: Program;
   selectedTimer!: number;
   count: number = 3;
+  index: any;
 
   constructor(private readonly route: ActivatedRoute,
               private readonly programService: ProgramService) { }
 
   ngOnInit(): void {
     this.route.params.pipe(
-      tap(({index}) => this.setIndex(index)),
-      mergeMap(({id}) => this.programService.get(id)),
+      tap(({index}) => this.index = index),
+      mergeMap(({id}) => {
+        return this.programService.get(id)
+      })
     ).subscribe(program => {
       this.program = program;
+      this.setSelectedTimer();
     });
   }
 
-  private setIndex(index: any) {
-    if (index === 'add') {
+  private setSelectedTimer() {
+    if (this.index === 'add') {
       this.program.timers.push({
         type: TimerTypes.training,
         time: 20,
       });
       this.selectedTimer = this.program.timers.length - 1;
     } else {
-      this.selectedTimer = index;
+      this.selectedTimer = this.index;
     }
   }
 

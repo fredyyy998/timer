@@ -12,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { TimeInputComponent } from './components/time-input/time-input.component';
 import { TrainingTypeRadioGroupComponent } from './components/training-type-radio-group/training-type-radio-group.component';
+import { HoldDirective } from './components/hold.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TrainingTypeRadioGroupComponent } from './components/training-type-radi
     TimerEditComponent,
     FooterComponent,
     TimeInputComponent,
-    TrainingTypeRadioGroupComponent
+    TrainingTypeRadioGroupComponent,
+    HoldDirective
   ],
     imports: [
         BrowserModule,

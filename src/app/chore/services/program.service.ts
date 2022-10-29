@@ -80,16 +80,12 @@ export class ProgramService {
     this.db.timers.bulkAdd(timers)
   }
 
-  // addEntity(program: Program): void {
-  //   this.db.programs.add(todo.toTodoEntity());
-  // }
-//
-  // deleteEntity(program: Program): void {
-  //     this.db.programs.delete(todo.localId);
-  // }
-  // updateEntityById(id: number, todo: Program) {
-  //   this.db.programs.update(id, todo.toTodoEntity());
-  // }
+
+  deleteEntity(program: Program, timerIndex: number): void {
+    program.timers.splice(timerIndex, 1);
+    this.updateTimers(program);
+  }
+
 
   private dexieToRx<T>(o: Observable): Rx.Observable<T> {
     return new Rx.Observable<T>(observer => {
