@@ -1,0 +1,8 @@
+<div class="footer">
+  <div *ngFor="let timer of program.timers; let i = index" class="timer-bubble" [ngClass]="{'break': timer.type === 0, 'active': selected === timer}" [routerLink]="['/timer-edit', program.id, i]">
+    <span>{{ timer.time }}s</span>
+  </div>
+  <div class="timer-bubble add">
+    <span [routerLink]="['/timer-edit', program.id, 'add']">Add</span>
+  </div>
+</div>

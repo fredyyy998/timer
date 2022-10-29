@@ -3,7 +3,7 @@
     <span [routerLink]="['/']">End Session</span>
   </div>
   <div class="desciption-next">
-    <span *ngIf="activeIndex < this.program.timers.length">Next: {{ this.program.timers[activeIndex+1].type }} {{ this.program.timers[activeIndex+1].time }}s</span>
+    <span *ngIf="activeIndex < this.program.timers.length">Next: {{ timerTypeToString(this.program.timers[activeIndex+1].type) }} {{ this.program.timers[activeIndex+1].time }}s</span>
     <span *ngIf="activeIndex === this.program.timers.length">Last Set</span>
     <span *ngIf="activeIndex > this.program.timers.length">Done</span>
   </div>

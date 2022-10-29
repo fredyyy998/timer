@@ -7,18 +7,28 @@ import { PlayButtonComponent } from './components/play-button/play-button.compon
 import { TimerComponent } from './pages/timer/timer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TimerSelectionComponent } from './pages/timer-selection/timer-selection.component';
+import { TimerEditComponent } from './pages/timer-edit/timer-edit.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { FormsModule } from '@angular/forms';
+import { TimeInputComponent } from './components/time-input/time-input.component';
+import { TrainingTypeRadioGroupComponent } from './components/training-type-radio-group/training-type-radio-group.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayButtonComponent,
     TimerComponent,
-    TimerSelectionComponent
+    TimerSelectionComponent,
+    TimerEditComponent,
+    FooterComponent,
+    TimeInputComponent,
+    TrainingTypeRadioGroupComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        FormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

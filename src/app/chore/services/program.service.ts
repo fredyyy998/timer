@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { Program } from '../../models/Program';
 import { liveQuery, Observable } from 'dexie';
 import * as Rx from 'rxjs';
+import { combineLatest, concatMap, first, map, mergeMap, of, toArray } from 'rxjs';
 import { db, ProgramEntity, TimerListEntity } from './db';
-import { combineLatest, concatMap, first, map, mergeMap, of, tap, toArray } from 'rxjs';
+import { TimerTypes } from '../../models/Timer';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,25 @@ export class ProgramService {
     );
   }
 
+  updateEntity(program: Program): void {
+    if (program.id) {
+      this.db.programs.update(program.id, program);
+      this.updateTimers(program);
+    }
+  }
+
+  private async updateTimers(program: Program) {
+    await this.db.timers.where({programId: program.id}).delete();
+    const timers: TimerListEntity[] = program.timers.map(timer => {
+      return {
+        programId: program.id,
+        time: timer.time,
+        type: timer.type
+      } as TimerListEntity
+    })
+    this.db.timers.bulkAdd(timers)
+  }
+
   // addEntity(program: Program): void {
   //   this.db.programs.add(todo.toTodoEntity());
   // }
@@ -67,11 +87,6 @@ export class ProgramService {
   // deleteEntity(program: Program): void {
   //     this.db.programs.delete(todo.localId);
   // }
-//
-  // updateEntity(program: Program): void {
-  //     this.db.programs.update(todo.localId, todo.toTodoEntity());
-  // }
-//
   // updateEntityById(id: number, todo: Program) {
   //   this.db.programs.update(id, todo.toTodoEntity());
   // }

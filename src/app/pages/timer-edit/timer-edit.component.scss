@@ -1,0 +1,58 @@
+.card {
+  margin: 5em;
+  background-color: #FBAB7E;
+  height: 100%;
+  padding: 2em;
+  border-radius: 60px;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+}
+
+.row-name-input {
+  display: flex;
+  align-items: center;
+}
+
+.name-input {
+  border: none;
+  background-color: #FBAB7E;
+  font: inherit;
+  outline: none;
+  width: 100%;
+  margin-right: .5em;
+  padding: .5em;
+  font-size: 1.2em;
+  border-radius: 25px;
+
+  &:focus {
+    background-color: #FFFFFF;
+  }
+}
+
+.row-time-input {
+  display: flex;
+
+  .time-input {
+    width: 100%;
+    margin: 0 1em;
+  }
+}
+
+
+
+.ok-button {
+  border: none;
+  font: inherit;
+
+  padding: 1em;
+  background-color: #000;;
+  border-radius: 50%;
+  color: #FFFFFF;
+}

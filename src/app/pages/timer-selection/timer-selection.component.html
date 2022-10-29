@@ -1,11 +1,20 @@
-<h1>Choose Timer</h1>
-<div class="card" *ngIf="selectedProgram">
-  <app-play-button [routerLink]="['timer', selectedProgram.id]"></app-play-button>
-  <div class="timer-description">
-    <h2>{{ selectedProgram.name }}</h2>
-    <div class="timer-description-sets">
-      <span>Sets:</span>
-      <span>{{selectedProgram.timers.length}}</span>
+<div class="main-container" *ngIf="selectedProgram">
+
+  <div class="content">
+    <h1 class="header">Choose Timer</h1>
+
+    <div class="card">
+      <app-play-button [routerLink]="['timer', selectedProgram.id]"></app-play-button>
+      <div class="timer-description">
+        <h2>{{ selectedProgram.name }}</h2>
+        <div class="timer-description-sets">
+          <span>Sets:</span>
+          <span>{{selectedProgram.timers.length}}</span>
+        </div>
+      </div>
     </div>
   </div>
+
+  <app-footer [program]="selectedProgram"></app-footer>
 </div>
+

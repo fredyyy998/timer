@@ -1,4 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 body {
   font-family: 'Montserrat', sans-serif;
+  margin: 0;
 }
+body, html {
+  height: 100%;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/*
+Main colors:
+purple: #7860F8
+orange: #FBAB7E
+ */

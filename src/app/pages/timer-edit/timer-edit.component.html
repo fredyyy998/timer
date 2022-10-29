@@ -1,0 +1,33 @@
+<div class="main-container" *ngIf="program">
+
+  <h1>Add Timer</h1>
+  <div class="card" >
+    <form class="form" (ngSubmit)="onSubmit()">
+      <div class="row-name-input">
+        <input id="input_name" [(ngModel)]="program.name" name="name" class="name-input">
+        <label for="input_name">
+          <fa-icon [icon]="faPencil"></fa-icon>
+        </label>
+      </div>
+
+      <app-time-input [(time)]="program.timers[selectedTimer].time"></app-time-input>
+
+      <div>
+        <div>
+          <label for="input_radio_type_training">Training</label>
+          <input id="input_radio_type_training" type="radio" name="type" [value]="1" [(ngModel)]="program.timers[selectedTimer].type">
+        </div>
+
+        <div>
+          <label for="input_radio_type_break">Break</label>
+          <input id="input_radio_type_break" type="radio" name="type" [value]="0" [(ngModel)]="program.timers[selectedTimer].type">
+        </div>
+      </div>
+
+      <button class="ok-button">Ok</button>
+    </form>
+
+  </div>
+
+  <app-footer [program]="program" [selected]="program.timers[selectedTimer]"></app-footer>
+</div>

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Program } from '../../models/Program';
 import { mergeMap, Observable, tap } from 'rxjs';
 import { ProgramService } from '../../chore/services/program.service';
-import { Timer } from '../../models/Timer';
+import { Timer, TimerTypes } from '../../models/Timer';
 
 @Component({
   selector: 'app-timer',
@@ -71,5 +71,16 @@ export class TimerComponent implements OnInit {
   clearTimer() {
     this.running = false;
     clearInterval(this.timerRef);
+  }
+
+  timerTypeToString(type: number): string {
+    switch (type) {
+      case TimerTypes.break:
+        return 'Break';
+      case TimerTypes.training:
+        return 'Training';
+      default:
+        throw new Error('Invalid Type');
+    }
   }
 }

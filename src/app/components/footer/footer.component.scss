@@ -1,0 +1,36 @@
+.footer {
+  background: rgba(120, 96, 248, 0.5);
+  height: 15vh;
+  min-width: 0;
+
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+
+  .timer-bubble {
+    border-radius: 50%;
+    width: 5em;
+    height: 5em;
+    background: #7860F8;
+    margin: 1em 1em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #FFFFFF;
+
+    &.active {
+      border: solid 2px #FBAB7E;
+    }
+
+    &.break {
+      background: rgba(120, 96, 248, 0.5);
+    }
+    &.add {
+      background: #000000;
+    }
+  }
+}

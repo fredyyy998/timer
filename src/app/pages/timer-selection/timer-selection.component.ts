@@ -18,6 +18,7 @@ export class TimerSelectionComponent implements OnInit {
     this.programService.listData().subscribe(res => {
       this.programs = res;
       this.selectedProgram = this.programs[0];
+      console.log(this.selectedProgram);
     })
   }
 }
