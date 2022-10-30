@@ -10,7 +10,6 @@
   <div class="timer">
     <span>{{displayTime}}s</span>
   </div>
-  <div>
-  <app-play-button (click)="onTimerStart()" [isPlaying]="!running"></app-play-button>
-</div>
+
+  <app-play-button class="play-button" (click)="onTimerStart()" [isPlaying]="!running"></app-play-button>
 </div>
