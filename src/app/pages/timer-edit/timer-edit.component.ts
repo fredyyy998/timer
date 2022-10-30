@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { concatWith, mergeMap, Observable, of, tap } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProgramService } from '../../chore/services/program.service';
 import { Program } from '../../models/Program';
 import { faClock, faPen } from '@fortawesome/free-solid-svg-icons';
 import { TimerTypes } from '../../models/Timer';
+import { ToasterService } from '../../chore/services/toaster.service';
 
 @Component({
   selector: 'app-timer-edit',
@@ -20,7 +21,9 @@ export class TimerEditComponent implements OnInit {
   index: any;
 
   constructor(private readonly route: ActivatedRoute,
-              private readonly programService: ProgramService) { }
+              private readonly programService: ProgramService,
+              private readonly router: Router,
+              private readonly toaster: ToasterService) { }
 
   ngOnInit(): void {
     this.route.params.pipe(
@@ -47,6 +50,8 @@ export class TimerEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.programService.updateEntity(this.program)
+    this.programService.updateEntity(this.program);
+    this.toaster.open('Saved Successfully');
+    this.router.navigate(['/']);
   }
 }

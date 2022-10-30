@@ -13,6 +13,9 @@ import { FormsModule } from '@angular/forms';
 import { TimeInputComponent } from './components/time-input/time-input.component';
 import { TrainingTypeRadioGroupComponent } from './components/training-type-radio-group/training-type-radio-group.component';
 import { HoldDirective } from './components/hold.directive';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,20 @@ import { HoldDirective } from './components/hold.directive';
     FooterComponent,
     TimeInputComponent,
     TrainingTypeRadioGroupComponent,
-    HoldDirective
+    HoldDirective,
+    SnackbarComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FontAwesomeModule,
-        FormsModule
+        FormsModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+          enabled: environment.production,
+          // Register the ServiceWorker as soon as the application is stable
+          // or after 30 seconds (whichever comes first).
+          registrationStrategy: 'registerWhenStable:30000'
+        })
     ],
   providers: [],
   bootstrap: [AppComponent]

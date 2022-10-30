@@ -1,15 +1,15 @@
 <div class="time-input-container">
   <div class="timer">
-    <span class="heading">Hours</span>
-    <input class="time-input" [(ngModel)]="hours" name="hours" (ngModelChange)="onTimeChanged()">
+    <label for="input_hours" class="heading">Hours</label>
+    <input id="input_hours"  type="number" class="time-input" [(ngModel)]="hours" name="hours" (ngModelChange)="onTimeChanged()">
   </div>
   <div class="timer">
-    <span class="heading">Minutes</span>
-    <input class="time-input" [(ngModel)]="minutes" name="minutes" (ngModelChange)="onTimeChanged()">
+    <label for="input_minutes" class="heading">Minutes</label>
+    <input id="input_minutes" type="number" class="time-input" [(ngModel)]="minutes" name="minutes" (ngModelChange)="onTimeChanged()">
   </div>
   <div class="timer">
-    <span class="heading">Seconds</span>
-    <input class="time-input" [(ngModel)]="seconds" name="seconds" (ngModelChange)="onTimeChanged()">
+    <label for="input_seconds" class="heading">Seconds</label>
+    <input id="input_seconds" type="number" class="time-input" [(ngModel)]="seconds" name="seconds" (ngModelChange)="onTimeChanged()">
   </div>
 </div>
 

@@ -1,0 +1,20 @@
+.snackbar {
+  position: absolute;
+  bottom: 2em;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 100%;
+
+  &.closed {
+    display: none;
+  }
+
+
+  p {
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #FFFFFF;
+    border-radius: 10px;
+  }
+}
