@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Program } from '../../models/Program';
-import { mergeMap, Observable, tap, timer } from 'rxjs';
+import { filter, interval, map, mergeMap, Observable, Subject, Subscription, tap, timer } from 'rxjs';
 import { ProgramService } from '../../chore/services/program.service';
 import { Timer, TimerTypes } from '../../models/Timer';
 
@@ -15,11 +15,14 @@ export class TimerComponent implements OnInit {
   private myAudioContext = new AudioContext();
 
   remainingTime!: number;
+  displayTime!:number;
 
   activeTimer!: Timer;
   activeIndex: number = 0;
 
   program!: Program;
+
+  private currentInterval!: Subscription;
 
   constructor(private readonly route: ActivatedRoute,
               private readonly programService: ProgramService) { }
@@ -45,39 +48,55 @@ export class TimerComponent implements OnInit {
 
   public onTimerStart() {
     if (this.running) {
-      this.clearTimer();
+      this.stopSub()
     } else {
-      this.startTimer();
+      this.startSub();
     }
   }
 
-  timerRef!: NodeJS.Timer;
-  running: boolean = false;
-
-  startTimer() {
-    this.running = true;
-      const startTime = Date.now() - (this.remainingTime * -1000);
-      this.timerRef = setInterval(() => {
-        const calc = (Date.now() - startTime) / -1000
-        this.remainingTime = Math.round(calc);
-        if (this.remainingTime < 5 && calc % 1 === 0) {
-          this.playSound();
-        }
-        if (this.remainingTime === 0) {
-          if(this.setTimer(this.activeIndex+1)) {
-            this.clearTimer();
-            this.startTimer();
-          } else {
-            this.clearTimer();
-          }
-        }
-      });
-  }
-
-  clearTimer() {
+  stopSub() {
     this.running = false;
-    clearInterval(this.timerRef);
+    this.currentInterval.unsubscribe();
   }
+
+  startSub() {
+    this.running = true;
+    this.currentInterval = timer(0, 1000).pipe(
+      map(_ => this.remainingTime--),
+      tap(_ => this.setDisplayTime()),
+      filter(remainingTime => remainingTime <= 5),
+      tap( _ => this.playSound()),
+      filter(remainingTime => remainingTime <= 0),
+      tap(_ => this.nextTimer())
+    ).subscribe();
+  }
+
+  setDisplayTime() {
+    this.displayTime = this.remainingTime;
+    if (this.remainingTime < 0) {
+      this.displayTime = 0;
+    }
+  }
+
+  playSound() {
+    // the remaining time can be lower than 0 for a clean swap between timers, but we don't want a sound then
+    if (this.remainingTime > 0) {
+      this.getSound();
+    }
+    // play a specific sound at the end
+    if (this.remainingTime === 0) {
+      this.getSound(200);
+      setTimeout(() => this.getSound(200), 400);
+    }
+  }
+
+  nextTimer() {
+    if (!this.setTimer(this.activeIndex + 1)) {
+      this.stopSub();
+    }
+  }
+
+  running: boolean = false;
 
   timerTypeToString(type: number): string {
     switch (type) {
@@ -90,10 +109,9 @@ export class TimerComponent implements OnInit {
     }
   }
 
-  playSound(): Promise<void> {
+  getSound(duration: number = 50): Promise<void> {
     return new Promise((resolve, reject) => {
       // Set default duration if not provided
-      const duration = 50;
       const frequency = 400;
       const volume = 10;
 
@@ -111,6 +129,7 @@ export class TimerComponent implements OnInit {
 
         // Set the gain to the volume
         gainNode.gain.value = volume * 0.01;
+
 
         // Start audio with the desired duration
         oscillatorNode.start(this.myAudioContext.currentTime);
