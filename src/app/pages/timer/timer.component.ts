@@ -38,11 +38,12 @@ export class TimerComponent implements OnInit {
 
   private setTimer(timerIndex: number): boolean {
     this.activeIndex = timerIndex;
-    if (this.activeIndex > this.program.timers.length) {
+    if (this.activeIndex >= this.program.timers.length) {
       return false;
     }
     this.activeTimer = this.program.timers[timerIndex];
     this.remainingTime = this.program.timers[timerIndex].time;
+    this.displayTime = this.remainingTime;
     return true;
   }
 
@@ -73,7 +74,7 @@ export class TimerComponent implements OnInit {
 
   setDisplayTime() {
     this.displayTime = this.remainingTime;
-    if (this.remainingTime < 0) {
+    if (this.displayTime < 0) {
       this.displayTime = 0;
     }
   }

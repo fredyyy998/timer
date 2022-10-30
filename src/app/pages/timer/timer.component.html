@@ -8,7 +8,7 @@
     <span *ngIf="activeIndex === this.program.timers.length">Done</span>
   </div>
   <div class="timer">
-    <span>{{remainingTime}}s</span>
+    <span>{{displayTime}}s</span>
   </div>
   <div>
   <app-play-button (click)="onTimerStart()" [isPlaying]="!running"></app-play-button>
