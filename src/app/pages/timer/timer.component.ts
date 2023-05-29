@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Program } from '../../models/Program';
-import { filter, interval, map, mergeMap, Observable, Subject, Subscription, tap, timer } from 'rxjs';
+import { filter, map, mergeMap, Subscription, tap, timer } from 'rxjs';
 import { ProgramService } from '../../chore/services/program.service';
 import { Timer, TimerTypes } from '../../models/Timer';
 
@@ -11,7 +11,6 @@ import { Timer, TimerTypes } from '../../models/Timer';
   styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent implements OnInit {
-
   private myAudioContext = new AudioContext();
 
   remainingTime!: number;
@@ -25,7 +24,8 @@ export class TimerComponent implements OnInit {
   private currentInterval!: Subscription;
 
   constructor(private readonly route: ActivatedRoute,
-              private readonly programService: ProgramService) { }
+              private readonly programService: ProgramService,
+              private readonly router: Router) { }
 
   ngOnInit(): void {
     this.route.params.pipe(
@@ -144,5 +144,9 @@ export class TimerComponent implements OnInit {
         reject(error);
       }
     });
+  }
+
+  handleOnEnd() {
+    this.router.navigate(['..']);
   }
 }

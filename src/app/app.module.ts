@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, HammerModule} from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,7 @@ import { HoldDirective } from './components/hold.directive';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import {EndSliderComponent} from "./components/end-slider/end-slider.component";
 
 @NgModule({
   declarations: [
@@ -30,18 +31,20 @@ import { environment } from '../environments/environment';
     HoldDirective,
     SnackbarComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FontAwesomeModule,
-        FormsModule,
-        ServiceWorkerModule.register('ngsw-worker.js', {
+  imports: [
+      BrowserModule,
+      AppRoutingModule,
+      FontAwesomeModule,
+      FormsModule,
+      ServiceWorkerModule.register('ngsw-worker.js', {
           enabled: environment.production,
           // Register the ServiceWorker as soon as the application is stable
           // or after 30 seconds (whichever comes first).
           registrationStrategy: 'registerWhenStable:30000'
-        })
-    ],
+      }),
+      EndSliderComponent,
+      HammerModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,7 @@
 <div class="main-container" *ngIf="program">
-  <div class="end-timer">
-    <span [routerLink]="['/']">End Session</span>
-  </div>
+
+  <app-end-slider (onEnd)="handleOnEnd()"></app-end-slider>
+
   <div class="desciption-next">
     <span *ngIf="activeIndex < this.program.timers.length - 1">Next: {{ timerTypeToString(this.program.timers[activeIndex+1].type) }} {{ this.program.timers[activeIndex+1].time }}s</span>
     <span *ngIf="activeIndex === this.program.timers.length - 1" >Last Set</span>

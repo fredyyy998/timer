@@ -1,0 +1,8 @@
+<div #sliderContainer class="slider-wrapper">
+  <span #slideElement draggable="true" (panstart)="startDrag()" (panmove)="handleDrag($event)" (panend)="handleDragEnd()" class="slider" >
+    <fa-icon class="test" [icon]="faTimes" size="2x"></fa-icon>
+  </span>
+  <span >
+    End Session
+  </span>
+</div>
