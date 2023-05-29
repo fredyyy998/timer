@@ -9,7 +9,9 @@
       <span>{{ timer.time }}s</span>
     </div>
     <div class="timer-bubble add">
-      <span [routerLink]="['/timer-edit', program.id, 'add']">Add</span>
+      <span [routerLink]="['/timer-edit', program.id, 'add']">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </span>
     </div>
   </div>
 </div>
