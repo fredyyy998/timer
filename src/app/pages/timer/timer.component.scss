@@ -26,4 +26,27 @@
   margin-bottom: 10vh;
 }
 
+.clock-container {
+  position: absolute;
+  width: 250%;
+  left: -75%;
+  top: 25%;
+  pointer-events: none;
 
+ &.animate {
+    animation: rotate 1s linear infinite;
+  }
+}
+
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(30deg);
+  }
+}

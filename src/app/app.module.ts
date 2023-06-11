@@ -16,7 +16,8 @@ import { HoldDirective } from './components/hold.directive';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import {EndSliderComponent} from "./components/end-slider/end-slider.component";
+import { EndSliderComponent } from "./components/end-slider/end-slider.component";
+import { ClockAnimationComponent } from "./components/clock-animation/clock-animation.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import {EndSliderComponent} from "./components/end-slider/end-slider.component";
     TimeInputComponent,
     TrainingTypeRadioGroupComponent,
     HoldDirective,
-    SnackbarComponent
+    SnackbarComponent,
   ],
   imports: [
       BrowserModule,
@@ -44,6 +45,7 @@ import {EndSliderComponent} from "./components/end-slider/end-slider.component";
       }),
       EndSliderComponent,
       HammerModule,
+      ClockAnimationComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

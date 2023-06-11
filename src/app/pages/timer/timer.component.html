@@ -11,5 +11,9 @@
     <span>{{displayTime}}s</span>
   </div>
 
+  <div class="clock-container" [ngClass]="{'animate': running}">
+    <app-clock-animation></app-clock-animation>
+  </div>
+
   <app-play-button class="play-button" (click)="onTimerStart()" [isPlaying]="!running"></app-play-button>
 </div>
