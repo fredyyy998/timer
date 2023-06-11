@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {TimerTypes} from "../../models/Timer";
 
 @Component({
   selector: 'app-training-type-radio-group',
   templateUrl: './training-type-radio-group.component.html',
   styleUrls: ['./training-type-radio-group.component.scss']
 })
-export class TrainingTypeRadioGroupComponent implements OnInit {
+export class TrainingTypeRadioGroupComponent {
 
-  constructor() { }
+  @Input() activeType: TimerTypes = TimerTypes.training;
+  @Output() activeTypeChange = new EventEmitter<TimerTypes>();
 
-  ngOnInit(): void {
+  onActiveTypeChange() {
+    this.activeTypeChange.emit(this.activeType);
   }
 
 }

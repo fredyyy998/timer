@@ -1,12 +1,11 @@
 <div class="radio-group">
   <div class="radio-button">
-    <label>Training</label>
-    <input type="radio" name="type" [value]="1">
+    <input id="radio_training" type="radio" name="type" [value]="1" [(ngModel)]="activeType" (ngModelChange)="onActiveTypeChange()">
+    <label for="radio_training">Training</label>
   </div>
 
-  <div class="radio-button">
-    <label>Break</label>
-    <input type="radio" name="type" [value]="0">
+  <div>
+    <input id="radio_break" type="radio" name="type" [value]="0" [(ngModel)]="activeType" (ngModelChange)="onActiveTypeChange()">
+    <label for="radio_break">Break</label>
   </div>
-
 </div>

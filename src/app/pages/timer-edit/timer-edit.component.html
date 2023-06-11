@@ -13,17 +13,8 @@
 
         <app-time-input [(time)]="program.timers[selectedTimer].time"></app-time-input>
 
-        <div>
-          <div>
-            <label for="input_radio_type_training">Training</label>
-            <input id="input_radio_type_training" type="radio" name="type" [value]="1" [(ngModel)]="program.timers[selectedTimer].type">
-          </div>
 
-          <div>
-            <label for="input_radio_type_break">Break</label>
-            <input id="input_radio_type_break" type="radio" name="type" [value]="0" [(ngModel)]="program.timers[selectedTimer].type">
-          </div>
-        </div>
+        <app-training-type-radio-group [(activeType)]="program.timers[selectedTimer].type"></app-training-type-radio-group>
 
         <button class="ok-button">Ok</button>
       </form>
